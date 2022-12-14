@@ -87,3 +87,15 @@ ol {
     list-style: none;
     padding: 15px;
 }
+
+section {
+    display: flex;
+    column-gap: 25px;
+}
+
+img 
+{
+    max-width: 250px;
+    background-size: cover;
+    background-position: center;
+}
