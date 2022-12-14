@@ -1,6 +1,6 @@
     </main>
     <footer>
-        Copyright &copy;
+        Copyright &copy; 2022 - 2023
     </footer>
 </body>
 </html>
