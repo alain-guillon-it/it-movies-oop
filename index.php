@@ -12,7 +12,7 @@ require_once "./vendor/autoload.php";
  * ======================================================================
  */
 $_page = 'home' ?? "";
-$_action = 'list';
+$_action = 'welcome' ?? "";
 $_id = false;
 
 
@@ -20,110 +20,153 @@ $_id = false;
  * ======================================================================
  * Check conditions $_GET["page"]
  * ======================================================================
- * Si le contenu de la variable $getPage qui correspond au contenu 
- * de $_GET["page"] après traitement, je check si il existe
- * dans le tableau $getPageValue.
+ * PAGES possible : film, serie, anime, manga, realisator, author
  * 
- * si c'est le cas, je défini le résultat dans ma variable $_page.
- * sinon je défini dans $_page, "home".
- * ======================================================================
- * Dans l'URL : localhost/?page=film&action=list
+ *    localhost/?page=film
+ *    localhost/?page=serie
+ *    localhost/?page=anime
+ *    localhost/?page=manga
+ *    localhost/?page=realisator
+ *    localhost/?page=author
+ * 
+ * SINON redirection vers error404
+ * 
  * ======================================================================
  */
 if (isset($_GET['page']) && !empty($_GET['page'])) {
 
   $getPage = trim($_GET['page']);
-  $getPageValue = ['film', 'serie', 'realisator'];
+  $getPageValue = ['film', 'serie', 'anime', 'manga', 'realisator'];
 
   // SOLUTION 1
-  switch ($_GET['page']) {
+  switch ($getPage) {
+
+    // localhost:5000/?page=film
     case "film":
-      // localhost:5000/?page=film
       $_page = "film";
       break;
 
+    // localhost:5000/?page=serie
     case "serie":
-      // localhost:5000/?page=serie
       $_page = "serie";
       break;
 
+    // localhost:5000/?page=anime
+    case "anime":
+      $_page = "anime";
+      break;
+
+    // localhost:5000/?page=manga
+    case "manga";
+      $_page = "manga";
+      break;
+
+    // localhost:5000/?page=realisator
     case "realisator":
-      // localhost:5000/?page=realisator
       $_page = "realisator";
       break;
 
+    // localhost:5000/
+    // localhost:5000/?page=home
     case "home":
     case "":
     default:
-      // localhost:5000/
-      // localhost:5000/?page=home
       $_page = "home";
       break;
   }
 
-  // SOLUTION 2
-  if (in_array($getPage, $getPageValue)) {
-    // localhost:5000/?page=X
-    $_page = $getPage;
-  } else {
-    // localhost:5000/
-    $_page = 'home';
-  }
+  // // SOLUTION 2
+  // if (in_array($getPage, $getPageValue)) {
+  //   // localhost:5000/?page=X
+  //   $_page = $getPage;
+  // } else {
+  //   // localhost:5000/
+  //   $_page = 'home';
+  // }
 
   // SOLUTION 3
-  $_page = (in_array($getPage, $getPageValue)) ? $getPage : 'home';
+  // $_page = (in_array($getPage, $getPageValue)) ? $getPage : 'home';
+} else {
+  header("Location : /");
 }
 
 /**
  * ======================================================================
  * Check conditions $_GET["action"]
  * ======================================================================
- * à éditer
+ * ACTIONS possible : welcome, detail, thanks, list
  * ======================================================================
  */
 if (isset($_GET['action']) && !empty($_GET['action'])) {
 
   $getAction = trim(htmlspecialchars($_GET["action"]));
-  switch ($getAction) {
+  $checkAction = ["welcome", "detail", "thanks", "list"];
 
-    case 'detail':
-      // localhost:5000/?page=film&action=detail
-      $_action = "detail";
-      break;
-
-    case 'create':
-      // localhost:5000/?page=film&action=create
-      $_action = 'create';
-      break;
-
-    case 'bienvenue':
-      // localhost:5000/?page=home&action=create
-      $_action = 'bienvenue';
-      break;
-    
-    case 'thanks':
-      // localhost:5000/?page=home&action=thanks
-      $_action = 'thanks';
-      break;
-
-
-    case 'list':
-    default:
-      // localhost:5000/?page=film&action=list
-      $_action = "list";
-      break;
-  }
+  /**
+   * ======================================================================
+   * 
+   * ACTION (detail) Routes possible : 
+   * 
+   *    localhost/?page=film&action=detail
+   *    localhost/?page=serie&action=detail
+   *    localhost/?page=anime&action=detail
+   *    localhost/?page=manga&action=detail
+   *    localhost/?page=realisator&action=detail
+   *    localhost/?page=author&action=detail
+   * 
+   * ACTION (thanks) Routes possible : 
+   * 
+   *    localhost/?page=film&action=thanks
+   *    localhost/?page=serie&action=thanks
+   *    localhost/?page=anime&action=thanks
+   *    localhost/?page=manga&action=thanks
+   *    localhost/?page=realisator&action=thanks
+   *    localhost/?page=author&action=thanks
+   *
+   * ACTION (list) Routes possible : 
+   * 
+   *    localhost/?page=film&action=list
+   *    localhost/?page=serie&action=list
+   *    localhost/?page=anime&action=list
+   *    localhost/?page=manga&action=list
+   *    localhost/?page=realisator&action=list
+   * 
+   * ACTION (welcome) Routes possible : DEFAULT
+   * 
+   *    localhost/?page=film&action=welcome
+   *    localhost/?page=serie&action=welcome
+   *    localhost/?page=anime&action=welcome
+   *    localhost/?page=manga&action=welcome
+   *    localhost/?page=realisator&action=welcome
+   *    localhost/?page=author&action=welcome
+   * 
+   * ======================================================================
+   */
+  $_action = (in_array($getAction, $checkAction)) ? $getAction : 'welcome';
 }
 
 /**
  * ======================================================================
  * Check conditions $_GET["id"]
  * ======================================================================
- * à éditer
+ * 
+ * ACTION (id) Routes possible : (par défaut false === 0)
+ * 
+ *    localhost/?page=film&action=list&id=0
+ *    localhost/?page=serie&action=list&id=0
+ *    localhost/?page=anime&action=list&id=0
+ *    localhost/?page=manga&action=list&id=0
+ *    localhost/?page=realisator&action=list&id=0
+ * 
+ *    localhost/?page=film&action=detail&id=0
+ *    localhost/?page=serie&action=detail&id=0
+ *    localhost/?page=anime&action=detail&id=0
+ *    localhost/?page=manga&action=detail&id=0
+ *    localhost/?page=realisator&action=detail&id=0
+ * 
  * ======================================================================
  */
 if (isset($_GET["id"]) && !empty($_GET["id"])) {
-  // localhost:5000/?page=film&action=list&id=0
   $_id = trim(htmlspecialchars($_GET["id"]));
 }
 

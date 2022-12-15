@@ -2,14 +2,22 @@
 
 namespace App\controllers;
 
-class HomeController 
+class HomeController
 {
+  use MediaTrait;
+
   function thanks() {
     return "Messaoud t'es un tueur, merci vraiment pour ce que tu m'as apporté, merci infiniment";
   }
-  function bienvenue()
+  function welcome()
   {
-    return "Welcome here";
+    $lastDatas = [
+      "films" => $this->getFilms(),
+      "series" => $this->getSeries(),
+      "realisators" => $this->getRealisators(),
+    ];
+
+    return $lastDatas;
   }
-  function list(){}
+  function detail($id) {}
 }
