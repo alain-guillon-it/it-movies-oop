@@ -38,8 +38,7 @@ main {
     background-color: #FFF;
     border: 2px solid #333;
     box-shadow: 0 0 2.5px #000;
-    min-width: 90%;
-    max-width: 992px;
+    width: 1200px;
 }
 h1 {
     text-transform: uppercase;
@@ -85,13 +84,31 @@ ol {
 }
 
 section {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     column-gap: 25px;
+    row-gap: 25px;
 }
 
 img 
 {
-    max-width: 250px;
+    width: 100%;
+    height: fit-content;
     background-size: cover;
     background-position: center;
+}
+
+figcaption{
+    text-align: center;
+    padding: 8px 0;
+    text-transform: uppercase;
+}
+
+figure {
+    border: 1px solid #333;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
 }

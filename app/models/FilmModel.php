@@ -17,7 +17,7 @@ class FilmModel extends MediaModel
     ],
     [
       "id" => 1,
-      "cover" => "https://i1.sndcdn.com/artworks-000120474674-s6pbnz-t500x500.jpg",
+      "cover" => "https://m.media-amazon.com/images/I/71Q+1jzt+mL._AC_SL1500_.jpg",
       'titre' => 'braveheart',
       'annee' => 1995,
       'synopsis' => "Evocation de la vie tumultueuse de William Wallace, héros et symbole de l'indépendance écossaise, qui à la fin du XIIIe siècle affronta les troupes du roi d'Angleterre Edward I qui venaient d'envahir son pays.",
@@ -37,7 +37,7 @@ class FilmModel extends MediaModel
     ],
     [
       "id" => 3,
-      "cover" => "https://www.mobygames.com/images/covers/l/61627-ace-ventura-pet-detective-windows-front-cover.jpg",
+      "cover" => "https://m.media-amazon.com/images/M/MV5BYmVhNmFmOGYtZjgwNi00ZGQ0LThiMmQtOGZjMDUzNzJhMGIzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
       'titre' => 'Ace ventura, détective chiens et chats',
       'annee' => 1995,
       'synopsis' => "Ace Ventura, un jeune homme décontracté à la banane arrogante et à la démarche élastique, est le Sherlock Holmes de la gent canine. Le voici à nouveau sur les dents quand le dauphin Flocon de neige, la mascotte de l'équipe de football americain de Miami, manque à l'appel.",

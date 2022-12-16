@@ -9,6 +9,11 @@ class FilmController extends MediaController
 
   // protected $_defaultModel = "Model\\FilmModel";
 
+  public static $_counter = 0;
+
+  function __construct() {
+    self::$_counter++;
+  }
 
   // App\\constrollers\\FilmController::presentation()
   static function presentation() {

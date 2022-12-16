@@ -1,13 +1,13 @@
 <h1>Liste des films </h1>
-<ul>
-  <?php 
-
-  var_dump($datas["films"]);
-  die;
-    foreach ($datas["films"] as $data): 
-  ?>
-    <li>
-      <a href=<?= "/?page=film&action=detail&id=" . $data['id'] ?>><?= $data["titre"] ?></a>
-    </li>
-  <?php endforeach; ?>
-</ul>
+<section>
+    <?php foreach ($datas as $key => $data): ?>
+    <a href=<?= "/?page=film&action=detail&id=" . $data["id"]; ?>>
+      <figure>
+          <img src=<?= $data['cover']; ?> alt="" />
+          <figcaption>
+              <?= $data["titre"]; ?>
+          </figcaption>
+      </figure>
+    </a>
+    <?php endforeach; ?>
+</section>

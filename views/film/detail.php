@@ -9,6 +9,7 @@
         <li><?= $data["genre"][$i] ?></li>
       <?php endfor; ?>
     </ul>
+    <a href="/?page=film&action=list">Retour sur la liste des films</a>
   </div>
 </section>
 
